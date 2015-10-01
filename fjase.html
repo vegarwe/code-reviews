@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Code review tools</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+        <style>
+            div.main {
+                overflow: hidden;
+                margin: 40px;
+                font-size: 24px;
+
+                border: 1px solid black;
+            }
+
+            div.box {
+                margin: auto;
+                width: 60%;
+                padding: 10px;
+
+                border: 1px solid green;
+            }
+            .centered {
+                margin: auto;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body ng-app="fisken">
+
+        <div ng-controller="fiskenController" ng-cloak>
+
+        <div class='main'>
+            <div      ng-if='inRange( 0)' id='slide0' class="box">
+                <span><h2 class="centered" style='width: 50%;'>Process, goals, benefits, culture, background</h2></span>
+                </br>
+                <span><h2 class="centered" style='width: 50%;'>Tools</h2></span>
+            </div>
+
+            <div      ng-if='inRange( 1,10)' id='slide1' class="box">
+                <span                                   ><p>Tools affect how you work</p></span>
+                <span ng-if='inRange( 2,10)'><p>Really learn your tools</p></span>
+                <span ng-if='inRange( 3,10)'><p>Source control</p></span>
+                <span ng-if='inRange( 4)'   ><ul><li>Exceptionally important</li></ul></span>
+                <span ng-if='inRange( 5)'   ><ul><li>Rewriting history is a revelation</li></ul></span>
+                <span ng-if='inRange( 6,10)'><p>Review tool</p></span>
+                <span ng-if='inRange( 7)'   ><ul><li>Create review (automatic?)</li></ul></span>
+                <span ng-if='inRange( 8)'   ><ul><li>Commenting, bug creation</li></ul></span>
+                <span ng-if='inRange( 9)'   ><ul><li>Fixing, affirming, closing</li></ul></span>
+                <span ng-if='inRange(10)'><ul><li>Statistics and other stuff, less important!</li></ul></span>
+            </div>
+
+            <div      ng-if='inRange(11,12)' id='slide2' class="box">
+                <span><h3 class="centered">Branch, check-in, review, merge</h3></span>
+                <span><p class="centered">Code collaborator, Crucible, Upsource</p></span>
+                </br>
+                <span><h3 class="centered">Create merge request</h3></span>
+                <span><p class="centered">Github, Stash</p></span>
+                </br>
+                <span><h3 class="centered">Stage before commit</h3></span>
+                <span><p class="centered">(take over source repo)</p></span>
+                <span><p class="centered">Gerrit</p></span>
+                </br>
+            </div>
+
+            <div      ng-if='inRange(13)' id='slide3' class="box">
+                <p>finished</p>
+            </div>
+
+        </div>
+
+        </div><!-- end root div -->
+
+    </body>
+
+
+    <script>
+    "use strict";
+
+    angular.module("fisken", ['ng']) // dependencies
+        .controller("fiskenController", function($scope, $http, $location) {
+
+            $scope.slide = parseInt($location.hash().substring(6)) || 0;
+
+            function forward() {
+                //if ($scope.slide > 0) {
+
+                $scope.slide++;
+                $location.hash('slide-' + $scope.slide);
+                console.log("forward  " + $scope.slide);
+            }
+
+            function backward() {
+                if ($scope.slide <= 0) return;
+
+                $scope.slide--;
+                $location.hash('slide-' + $scope.slide);
+                console.log("backward " + $scope.slide);
+            }
+
+            function checkKey(e) {
+                e = e || window.event;
+
+                if (e.keyCode == '37') {
+                    $scope.$apply(backward());
+                } else if (e.keyCode == '39') {
+                    $scope.$apply(forward());
+                }
+            }
+
+            $scope.inRange = function(start, end) {
+                if (end === undefined) return $scope.slide === start;
+                return start <= $scope.slide && $scope.slide <= end;
+            }
+
+            document.onkeydown = checkKey;
+
+        });
+
+    </script>
+
+</html>

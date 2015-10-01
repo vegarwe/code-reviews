@@ -1,0 +1,114 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Test program</title>
+
+        <script src="http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
+
+        <style>
+            div.main {
+                overflow: hidden;
+                margin: 40px;
+                font-size: 24px;
+
+                border: 1px solid black;
+            }
+
+            div.box {
+                margin: auto;
+                width: 60%;
+                padding: 10px;
+
+                border: 1px solid green;
+            }
+            .centered {
+                margin: auto;
+                width: 40%;
+                text-align: center;
+                font-size: 36px;
+            }
+        </style>
+
+        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+    </head>
+
+    <body>
+
+        <div class='main'>
+            <div id='box' class="box">
+            </div>
+        </div>
+
+        <script>
+            (function() {
+                var fisken = '';
+
+                var step = 0;
+                var steps = [
+                    {forward_append: '<div class="centered">Process, goals, benefits, culture, background</div></br><div class="centered">Tools</div>'},
+                    {forward_append: '<p>Tools affect how you work</p>', forward_hide: 0},
+                    {forward_append: '<p>Really lear your tools</p>'},
+                    {forward_append: '<p>Source control</p>'},
+                    {forward_append: '<ul><li>Exceptionally important</li></ul>'},
+                    {forward_append: '<ul><li>Rewriting history is a revelation</li></ul>', forward_hide: 4},
+                    {forward_append: '<p>hei 4</p>', forward_hide: 5},
+                    {forward_append: '<p>hei 5</p>', forward_hide: 2},
+                    {forward_append: '<p>hei 6</p>', forward_hide: 3},
+                    {forward_append: '<p>finished</p>'}
+                ];
+
+                function backward(step, action) {
+                    var list = $('#list');
+                    if (action.hasOwnProperty('forward_append')) {
+                        $("#step-" + step).remove();
+                    }
+                    if (action.hasOwnProperty('forward_hide')) {
+                        $("#step-" + action.forward_hide).show();
+                    }
+                }
+
+                function forward(step, action) {
+                    var box = $('#box');
+                    if (action.hasOwnProperty('forward_append')) {
+                        box.append("<span id='step-" + step + "'>" + steps[step].forward_append + "</span>");
+                    }
+                    if (action.hasOwnProperty('forward_hide')) {
+                        $("#step-" + action.forward_hide).hide();
+                    }
+                }
+
+                function checkKey(e) {
+                    e = e || window.event;
+
+                    if (e.keyCode == '37') {
+                        console.log("left arrow " + step);
+                        var action = steps[step-1];
+                        if (action) {
+                            step--;
+                            backward(step, action);
+                        }
+                    } else if (e.keyCode == '39') {
+                        console.log("right arrow " + step);
+                        var action = steps[step];
+
+                        if (action) {
+                            forward(step, action);
+                            step++;
+                        }
+                    }
+                }
+
+                document.onkeydown = checkKey;
+                forward(step, steps[0]);
+                step++;
+
+                console.log('hei ' + fisken);
+
+            }());
+        </script>
+
+    </body>
+</html>
