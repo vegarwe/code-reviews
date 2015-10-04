@@ -5,12 +5,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 
         <style>
-            body {
-                background-image: url("conceptos.png");
-                background-repeat: no-repeat;
-                background-size: 150px;
-            }
-
             div.main {
                 margin: 30px;
                 font-size: 24px;
@@ -23,7 +17,14 @@
 
                 border: 1px solid green;
             }
-            h1,h2,h3,p {
+
+            div.main {
+                background-image: url("conceptos.png");
+                background-repeat: no-repeat;
+                background-size: 150px;
+            }
+
+            h1,h2,h3,p,ul {
                 margin: 5px;
             }
 
@@ -48,41 +49,109 @@
 
             <div      ng-if='inRange( 0)' id='slide0' class="box">
                 <span><h2 class="centered narrow">Process, goals, benefits, culture, background</h2></span>
+                <span><p class='centered'>By Peter</p></span>
                 </br>
                 </br>
                 <span><h2 class="centered narrow">Tools</h2></span>
+                <span><p class='centered'>By me</p></span>
             </div>
 
 
-            <div      ng-if='inRange( 1,10)' id='slide1' class="box">
-                <span                       ><p>Tools should not dictate how we work</p></span>
-                <span ng-if='inRange( 2,10)'><p>Really learn your tools</p></span>
-                <span ng-if='inRange( 3,10)'><p>Source control</p></span>
-                <span ng-if='inRange( 4)'   ><ul><li>Exceptionally important</li></ul></span>
-                <span ng-if='inRange( 5)'   ><ul><li>Rewriting history is a revelation</li></ul></span>
-                <span ng-if='inRange( 6,10)'><p>Review tool</p></span>
-                <span ng-if='inRange( 7)'   ><ul><li>Create review (automatic?)</li></ul></span>
-                <span ng-if='inRange( 8)'   ><ul><li>Commenting, bug creation</li></ul></span>
-                <span ng-if='inRange( 9)'   ><ul><li>Fixing, affirming, closing</li></ul></span>
-                <span ng-if='inRange(10)'   ><ul><li>Statistics and other stuff, less important!</li></ul></span>
+            <div      ng-if='inRange( 1,20)' id='slide1' class="box">
+                <span ng-if='inRange( 1,-1)'><p>Tools should not dictate how we work</p></span>
+                <span ng-if='inRange( 2)'   ><ul><li>Maybe your process is broken?</li></ul></span>
+                <span ng-if='inRange( 3,-1)'><p>Really learn your tools!</p></span>
+                <span ng-if='inRange( 3, 4)'><ul><li>Editor (IDE), build tool, source control, debugger, test system, ...</li></ul></span>
+                <span ng-if='inRange( 4, 4)'><ul><li>Always pays</li></ul></span>
+                <span ng-if='inRange( 4, 4)'><ul><li>Feeling of mastery</li></ul></span>
+                <span ng-if='inRange( 5,-1)'><p>What tools do we need</p></span>
+                <span ng-if='inRange( 5)'   ><ul><li>Can do code reviews with diff and email</li></ul></span>
+                <span ng-if='inRange( 6)'   ><ul><li>Source control</li></ul></span>
+                <span ng-if='inRange( 6)'   ><ul><li>Build tool, automatic build system</li></ul></span>
+                <span ng-if='inRange( 6)'   ><ul><li>Source control, build tool, automatic build system and review tool</li></ul></span>
+                <span ng-if='inRange( 6)'   ><ul><li>Review tool</li></ul></span>
+                <span ng-if='inRange( 7,-1)'><p>Source control</p></span>
+                <span ng-if='inRange( 7)'   ><ul><li>Vitally important</li></ul></span>
+                <span ng-if='inRange( 8)'   ><ul><li>Rewriting history is a revelation</li></ul></span>
+                <span ng-if='inRange( 9)'   ><ul><li>Arch, Mercurial, Git, BitKeeper, (TFSVC?)</li></ul></span>
+                <span ng-if='inRange(10)'   ><ul><li>Mercurial vs. Git</li></ul></span>
+                <span ng-if='inRange(11)'   ><ul><li>Can work with SVN as well, but not as flexible</li></ul></span>
+                <span ng-if='inRange(12,-1)'><p>Build tool and automatic build system</p></span>
+                <span ng-if='inRange(12)'   ><ul><li>Need a build tool to be able to have an automated build system</li></ul></span>
+                <span ng-if='inRange(13)'   ><ul><li>Integrate the build system into the review tool</li></ul></span>
+                <span ng-if='inRange(14)'   ><ul><li>No need to review code that does not pass all tests</li></ul></span>
+                <span ng-if='inRange(14)'   ><ul><li>Rewriting history means every commit should pass all tests</li></ul></span>
+                <span ng-if='inRange(15,-1)'><p>Review tool</p></span>
+                <span ng-if='inRange(16)'   ><ul><li>Usually always web based</li></ul></span>
+                <span ng-if='inRange(17)'   ><ul><li>Needs to be easy to use for all common tasks</li></ul></span>
+                <span ng-if='inRange(18)'   ><ul><li>Create review (automatic?)</li></ul></span>
+                <span ng-if='inRange(18)'   ><ul><li>Commenting, bug creation</li></ul></span>
+                <span ng-if='inRange(18)'   ><ul><li>Fixing, affirming, closing</li></ul></span>
+                <span ng-if='inRange(19)'   ><ul><li>Statistics and other stuff, less important!</li></ul></span>
+                <span ng-if='inRange(20,-1)'><p>Try to use your tools to minimize the effort needed of you reviewer</p></span>
+                <span ng-if='inRange(20)'   ><ul><li>Have concise commits (that often leads to small commits)</li></ul></span>
+                <span ng-if='inRange(20)'   ><ul><li>Do a 'White space only' commit</li></ul></span>
+                <span ng-if='inRange(20)'   ><ul><li>Don't move and change code at the same time</li></ul></span>
+                <span ng-if='inRange(20)'   ><ul><li>Always refactor in one commit and change code in another</li></ul></span>
             </div>
 
 
-            <div      ng-if='inRange(11,12)' id='slide2' class="box centered">
-                <span><h3>Branch, check-in, review, merge</h3></span>
-                <span><p>Code collaborator, Crucible, Upsource</p></span>
-                <span><h3>Create merge request</h3></span>
-                <span><p>Github, Stash</p></span>
-                <span><h3>Stage before commit</h3></span>
-                <span><p class='small'>(take over source repo)</p></span>
-                <span><p>Gerrit</p></span>
-                </br>
+            <div      ng-if='inRange(21,23)' id='slide2' class="box centered">
+                <span ng-if='inRange(21,-1)'><h3>Branch, check-in, review, merge</h3></span>
+                <span ng-if='inRange(21,-1)'><p>Code collaborator, Crucible, Upsource</p></br></span>
+                <span ng-if='inRange(22,-1)'><h3>Create merge request</h3></span>
+                <span ng-if='inRange(22,-1)'><p>Github, Stash</p></br></span>
+                <span ng-if='inRange(23,-1)'><h3>Centrally stage before commit</h3></span>
+                <span ng-if='inRange(23,-1)'><p class='small'>(take over source repo)</p></span>
+                <span ng-if='inRange(23,-1)'><p>Gerrit</p></br></span>
+            </div>
+
+            <div      ng-if='inRange(24,26)' id='slide3' class="box">
+                <div class='centered'>
+                    <span ng-if='inRange(24,-1)'><h3>Branch, check-in, review, merge</h3></span>
+                    <span ng-if='inRange(24,-1)'><p>Code collaborator, Crucible, Upsource</p></br></span>
+                </div>
+                <span ng-if='inRange(24)'   ><p>The SVN (or feature branch) model</p></span>
+                <span ng-if='inRange(24)'   ><p>Easy, understandable, quick to get going</p></span>
+                <span ng-if='inRange(25,26)'><p>One review per feature (big reviews)</p></span>
+                <span ng-if='inRange(25,26)'><p>Branch, commit, commit, commit, commit, review, commit, merge</p></span>
+                <span ng-if='inRange(26,26)'><p>Refactor, review, implement, review</p></span>
+            </div>
+
+            <div      ng-if='inRange(27,29)' id='slide4' class="box">
+                <div class='centered'>
+                    <span ng-if='inRange(27,-1)'><h3>Create merge request</h3></span>
+                    <span ng-if='inRange(27,-1)'><p>Github, Stash</p></br></span>
+                </div>
+                <span ng-if='inRange(27,-1)'><p>The Github model</p></span>
+                <span ng-if='inRange(28,-1)'><p>Only a single reviewer (since approving means merging)</p></span>
+                <span ng-if='inRange(29,-1)'><p>Perfect for distributed VCS works</p></span>
             </div>
 
 
-            <div      ng-if='inRange(13)' id='slide3' class="box">
-                <p>finished</p>
+            <div      ng-if='inRange(30,35)' id='slide4' class="box">
+                <div class='centered'>
+                    <span ng-if='inRange(30,-1)'><h3>Centrally stage before commit</h3></span>
+                    <span ng-if='inRange(30,-1)'><p>Gerrit</p></br></span>
+                </div>
+                <span ng-if='inRange(30,-1)'><p>Hijack the source repo</p></span>
+                <span ng-if='inRange(30,-1)'><p>Gerrit: You commit locally and push into staging</p></span>
+                <span ng-if='inRange(31,-1)'><p>Works well with Git (even if it is a hack)</p></span>
+                <span ng-if='inRange(32,-1)'><p>Gerrit: One commit, one review</p></span>
+                <span ng-if='inRange(33,-1)'><p>Still possible to do small reviews (small commits)</p></span>
+                <span ng-if='inRange(34,-1)'><p>Easy to work on (fix up review comments) on several open reviews at once</p></span>
+                <span ng-if='inRange(35,-1)'><p>Does send out a <em>lot</em> of emails</p></span>
             </div>
+
+            <div      ng-if='inRange(36,-1)' id='slide4' class="box">
+                <span ng-if='inRange(36,-1)'><h3>Closing discussion</h3></span>
+                <span ng-if='inRange(36,-1)'><p><em>"We don't have time to do code reviews"</em></p></span>
+                <span ng-if='inRange(36,-1)'><p>What do you think would be the biggest gain from doing code review?</p></span>
+                <span ng-if='inRange(36,-1)'><p>What is keeping your team from doing code reviews?</p></span>
+                <span ng-if='inRange(36,-1)'><p>How do you think team spirit would be affected by doing reviews?</p></span>
+                <span ng-if='inRange(36,-1)'><p>How do you think code quality would be affected by doing reviews?</p></span>
+            </div>
+
 
         </div>
 
@@ -100,7 +169,8 @@
             $scope.slide = parseInt($location.hash().substring(6)) || 0;
 
             $scope.inRange = function(start, end) {
-                return true;
+                //return true;
+                if (end === -1) return start <= $scope.slide;
                 if (end === undefined) return $scope.slide === start;
                 return start <= $scope.slide && $scope.slide <= end;
             }
