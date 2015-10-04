@@ -5,24 +5,37 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 
         <style>
-            div.main {
-                overflow: hidden;
-                margin: 40px;
-                font-size: 24px;
+            body {
+                background-image: url("conceptos.png");
+                background-repeat: no-repeat;
+                background-size: 150px;
+            }
 
-                border: 1px solid black;
+            div.main {
+                margin: 30px;
+                font-size: 24px;
             }
 
             div.box {
                 margin: auto;
-                width: 60%;
                 padding: 10px;
+                width: 60%;
 
                 border: 1px solid green;
             }
+            h1,h2,h3,p {
+                margin: 5px;
+            }
+
             .centered {
                 margin: auto;
                 text-align: center;
+            }
+            .small {
+                font-size: 80%;
+            }
+            .narrow {
+                width: 50%;
             }
         </style>
     </head>
@@ -32,14 +45,17 @@
         <div ng-controller="fiskenController" ng-cloak>
 
         <div class='main'>
+
             <div      ng-if='inRange( 0)' id='slide0' class="box">
-                <span><h2 class="centered" style='width: 50%;'>Process, goals, benefits, culture, background</h2></span>
+                <span><h2 class="centered narrow">Process, goals, benefits, culture, background</h2></span>
                 </br>
-                <span><h2 class="centered" style='width: 50%;'>Tools</h2></span>
+                </br>
+                <span><h2 class="centered narrow">Tools</h2></span>
             </div>
 
+
             <div      ng-if='inRange( 1,10)' id='slide1' class="box">
-                <span                                   ><p>Tools affect how you work</p></span>
+                <span                       ><p>Tools should not dictate how we work</p></span>
                 <span ng-if='inRange( 2,10)'><p>Really learn your tools</p></span>
                 <span ng-if='inRange( 3,10)'><p>Source control</p></span>
                 <span ng-if='inRange( 4)'   ><ul><li>Exceptionally important</li></ul></span>
@@ -48,21 +64,21 @@
                 <span ng-if='inRange( 7)'   ><ul><li>Create review (automatic?)</li></ul></span>
                 <span ng-if='inRange( 8)'   ><ul><li>Commenting, bug creation</li></ul></span>
                 <span ng-if='inRange( 9)'   ><ul><li>Fixing, affirming, closing</li></ul></span>
-                <span ng-if='inRange(10)'><ul><li>Statistics and other stuff, less important!</li></ul></span>
+                <span ng-if='inRange(10)'   ><ul><li>Statistics and other stuff, less important!</li></ul></span>
             </div>
 
-            <div      ng-if='inRange(11,12)' id='slide2' class="box">
-                <span><h3 class="centered">Branch, check-in, review, merge</h3></span>
-                <span><p class="centered">Code collaborator, Crucible, Upsource</p></span>
-                </br>
-                <span><h3 class="centered">Create merge request</h3></span>
-                <span><p class="centered">Github, Stash</p></span>
-                </br>
-                <span><h3 class="centered">Stage before commit</h3></span>
-                <span><p class="centered">(take over source repo)</p></span>
-                <span><p class="centered">Gerrit</p></span>
+
+            <div      ng-if='inRange(11,12)' id='slide2' class="box centered">
+                <span><h3>Branch, check-in, review, merge</h3></span>
+                <span><p>Code collaborator, Crucible, Upsource</p></span>
+                <span><h3>Create merge request</h3></span>
+                <span><p>Github, Stash</p></span>
+                <span><h3>Stage before commit</h3></span>
+                <span><p class='small'>(take over source repo)</p></span>
+                <span><p>Gerrit</p></span>
                 </br>
             </div>
+
 
             <div      ng-if='inRange(13)' id='slide3' class="box">
                 <p>finished</p>
@@ -82,6 +98,12 @@
         .controller("fiskenController", function($scope, $http, $location) {
 
             $scope.slide = parseInt($location.hash().substring(6)) || 0;
+
+            $scope.inRange = function(start, end) {
+                return true;
+                if (end === undefined) return $scope.slide === start;
+                return start <= $scope.slide && $scope.slide <= end;
+            }
 
             function forward() {
                 //if ($scope.slide > 0) {
@@ -108,12 +130,6 @@
                     $scope.$apply(forward());
                 }
             }
-
-            $scope.inRange = function(start, end) {
-                if (end === undefined) return $scope.slide === start;
-                return start <= $scope.slide && $scope.slide <= end;
-            }
-
             document.onkeydown = checkKey;
 
         });
