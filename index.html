@@ -2,7 +2,8 @@
 <html>
     <head>
         <title>Code review tools</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+        <!--script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script-->
+        <script src="angular-1.4.5.min.js"></script>
 
         <style>
             div.main {
@@ -15,7 +16,9 @@
                 padding: 10px;
                 width: 60%;
 
+                /*
                 border: 1px solid green;
+                */
             }
 
             div.main {
@@ -59,11 +62,12 @@
 
 
             <div      ng-if='inRange( 1,20)' id='slide1' class="box">
+                <span                       ><h3 class="centered">Tools</h3></br></span>
                 <span ng-if='inRange( 1,-1)'><p>Tools should not dictate how we work</p></span>
                 <span ng-if='inRange( 2)'   ><ul><li>Maybe your process is broken?</li></ul></span>
                 <span ng-if='inRange( 3,-1)'><p>Really learn your tools!</p></span>
                 <span ng-if='inRange( 3, 4)'><ul><li>Editor (IDE), build tool, source control, debugger, test system, ...</li></ul></span>
-                <span ng-if='inRange( 4, 4)'><ul><li>Always pays</li></ul></span>
+                <span ng-if='inRange( 4, 4)'><ul><li>Always pays off</li></ul></span>
                 <span ng-if='inRange( 4, 4)'><ul><li>Feeling of mastery</li></ul></span>
                 <span ng-if='inRange( 5,-1)'><p>What tools do we need</p></span>
                 <span ng-if='inRange( 5)'   ><ul><li>Can do code reviews with diff and email</li></ul></span>
@@ -119,7 +123,7 @@
                 <span ng-if='inRange(26,26)'><p>Alternate work flow: Refactor, review, implement, review</p></span>
             </div>
 
-            <div      ng-if='inRange(27,29)' id='slide4' class="box">
+            <div      ng-if='inRange(27,30)' id='slide4' class="box">
                 <div class='centered'>
                     <span                   ><h3>Create merge request</h3></span>
                     <span                   ><p>Github, Stash</p></br></span>
@@ -128,10 +132,13 @@
                 <span ng-if='inRange(28,-1)'><p>Only a single reviewer (since approving means merging)</p></span>
                 <span ng-if='inRange(29,-1)'><p>Perfect for distributed VCS works</p></span>
                 <span ng-if='inRange(30,-1)'><p>Work flow</p></span>
+                <span ng-if='inRange(30,-1)'><ul><li>Feature branches</li></ul></span>
+                <span ng-if='inRange(30,-1)'><ul><li>One review (pull request) pr branch</li></ul></span>
+                <span ng-if='inRange(30,-1)'><ul><li>All new commits (updates) to the same branch goes into the review</li></ul></span>
             </div>
 
 
-            <div      ng-if='inRange(31,35)' id='slide4' class="box">
+            <div      ng-if='inRange(31,37)' id='slide4' class="box">
                 <div class='centered'>
                     <span                   ><h3>Centrally stage before commit</h3></span>
                     <span                   ><p>Gerrit</p></br></span>
@@ -147,8 +154,12 @@
             </div>
 
             <div      ng-if='inRange(38,-1)' id='slide4' class="box">
-                <span                       ><h3>Closing discussion</h3></br></span>
+                <span                       ><h3 class="centered">Closing discussion</h3></br></span>
                 <span                       ><p><em>"We don't have time to do code reviews"</em></p></span>
+                </br>
+                <span                       ><p><b>Reviews is supposed to be a bit of a hassle.</b></p></span>
+                <span                       ><ul><li>Slowing down the developement process means you take the time to do things properly</li></ul></span>
+                </br>
                 <span                       ><p>What do you think would be the biggest gain from doing code review?</p></span>
                 <span                       ><p>What is keeping your team from doing code reviews?</p></span>
                 <span                       ><p>How do you think team spirit would be affected by doing reviews?</p></span>
